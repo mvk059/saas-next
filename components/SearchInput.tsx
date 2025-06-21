@@ -9,12 +9,11 @@ const SearchInput = () => {
 	const pathname = usePathname();
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const query = searchParams.get('topic') || '';
 
 	const [searchQuery, setSearchQuery] = useState('');
 
 	useEffect(() => {
-		const delayDebounceFn = setTimeout(() => {
+		setTimeout(() => {
 			if(searchQuery) {
 				const newUrl = formUrlQuery({
 					params: searchParams.toString(),
@@ -33,7 +32,7 @@ const SearchInput = () => {
 					router.push(newUrl, { scroll: false });
 				}
 			}
-		}, 500)
+		}, 200)
 	}, [searchQuery, router, searchParams, pathname]);
 
 	return (
